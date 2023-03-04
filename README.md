@@ -35,3 +35,9 @@ NFS Firewall : allow only users under a specific domain to access HTTP/HTTPS
     service autofs restart
     service nfs restart
     ```
+## NFS Firewall
+- Using pf
+- Only accept packet from 10.113.59.0/24 to access HTTP/HTTPS.  
+- All IP can’t send ICMP echo request packets to server,except 10.113.59.254 and 10.113.59.2
+  - 
+
