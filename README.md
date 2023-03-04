@@ -36,8 +36,45 @@ NFS Firewall : allow only users under a specific domain to access HTTP/HTTPS
     service nfs restart
     ```
 ## NFS Firewall
-- Using pf
 - Only accept packet from 10.113.59.0/24 to access HTTP/HTTPS.  
 - All IP can’t send ICMP echo request packets to server,except 10.113.59.254 and 10.113.59.2
-  - 
-
+- Implementation using pf
+  - Steps
+    - Enabling pf by adding below in **/etc/rc.conf** and save  
+    ![](https://imgur.com/8W1GqnS.jpg)
+    - Specifying who to block by editing **/etc/pf.conf,
+    first block all and then pass the users under specific domain**  
+    ![](https://imgur.com/NmT2S6u.jpg)
+    - And then we restart to enable the service
+    ```
+      service pf restart
+    ```
+ - SSH failed login
+   - If someone attempts to login via SSH but failed for 3 times in 1 minute, then their IP will be banned from SSH for 60 seconds automatically
+   - Implementation using blacklistd
+     - Steps
+       -  Enabling blacklistd by adding below in **/etc/rc.conf** and save  
+       ![](https://imgur.com/BNZW72r.jpg) 
+       - Specifying the banning rule by editing **/etc/blacklistd.conf**  
+         
+       ![](https://imgur.com/TWLzT4J.jpg) 
+       - And then we restart to enable the service
+        ```
+        service blacklistd restart
+        ```
+  - Extra : Unban an IP
+    - Write a shell script ‘iamgoodguy’ to unban an IP.
+    - Usage : **iamgoodguy** *TheSelectedIP*
+    - Implementation : 
+        ```
+        vim /bin/iamgoodguy
+        ```
+        ShellScript : 
+        ```
+        #!/bin/sh
+        pfctl -a blacklistd/22 -t port22 -T delete "$1"
+        ```
+        And then we restart to enable the service
+        ```
+        service blacklistd restart
+        ```
