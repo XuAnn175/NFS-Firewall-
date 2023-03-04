@@ -65,15 +65,10 @@ NFS Firewall : allow only users under a specific domain to access HTTP/HTTPS
   - Extra : Unban an IP
     - Write a shell script ‘iamgoodguy’ to unban an IP.
     - Usage : **iamgoodguy** *TheSelectedIP*
-    - Implementation : 
-        ```
-        vim /bin/iamgoodguy
-        ```
-        ShellScript : 
-        ```
-        #!/bin/sh
-        pfctl -a blacklistd/22 -t port22 -T delete "$1"
-        ```
+    - Implementation :  
+        Write a shell script ‘iamgoodguy’ under **/bin**  
+        Shell Script :  
+        ![](https://imgur.com/Z7o431c.jpg)  
         And then we restart to enable the service
         ```
         service blacklistd restart
