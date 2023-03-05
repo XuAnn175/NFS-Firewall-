@@ -50,9 +50,9 @@ NFS Firewall : allow only users under a specific domain to access HTTP/HTTPS,ICM
       service pf restart
     ```
  - SSH failed login
-   - If someone attempts to login via SSH but failed for 3 times in 1 minute, then their IP will be banned from SSH for 60 seconds automatically
-   - Implementation using blacklistd
-     - Steps
+ - If someone attempts to login via SSH but failed for 3 times in 1 minute, then their IP will be banned from SSH for 60 seconds automatically
+ - Implementation using blacklistd
+   - Steps
        -  Enabling blacklistd by adding below in **/etc/rc.conf** and save  
        ![](https://imgur.com/BNZW72r.jpg) 
        - Specifying the banning rule by editing **/etc/blacklistd.conf**  
