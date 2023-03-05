@@ -1,6 +1,6 @@
 # NFS-and-Firewall
 Implementation of NFS server and NFS client on FreeBSD.  
-NFS Firewall : allow only users under a specific domain to access HTTP/HTTPS  
+NFS Firewall : allow only users under a specific domain to access HTTP/HTTPS,ICMP services.  
 ## NFS server
 - WireGuard IP : 10.113.59.2
 - Restrict other hosts to mount the storage bt editing the export table
